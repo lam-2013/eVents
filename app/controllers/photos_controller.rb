@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   # check if the user is allowed to delete a photos
   before_filter :correct_user, only: :destroy
 
-  def crete
+  def create
   end
 
   def destroy
