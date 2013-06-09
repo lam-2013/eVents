@@ -19,8 +19,18 @@ class User < ActiveRecord::Base
 
   # each user can have some posts associated and they must be destroyed together with the user
   has_many :posts, dependent: :destroy
-
+  # each user can have some photos associated and they must be destroyed together with the user
   has_many :photos, dependent: :destroy
+
+
+  #for follower and followed
+  has_many :relationships, foreign_key: follower_id, dependent: :destroy
+
+  has_many :followed_users, through: :relationships, source: :followed
+
+  has_many :reverse_relationships, foreign_key: followed_id, class_name: Relationship, dependent: :destroy
+
+  has_many :followers, through: :reverse_relationships
 
   # put the email in downcase before saving the user
   before_save { |user| user.email = email.downcase }
@@ -44,6 +54,25 @@ class User < ActiveRecord::Base
   # password_confirmation sempre presente
   validates :password_confirmation, presence: true
 
+  #un utente ne sta seguendo un altro?
+  def following?(other_user)
+    relationships.find_by_followed_id(other_user.id)
+  end
+
+  #seguire un altro utente (crea una nuova relationship)
+  def follow!(other_user)
+    relationships.create!(followed_id:other_user.id)
+  end
+
+  #smettere di seguire un utente
+  def unfollow!(other_user)
+    relationships.find_by_followed_id(other_user.id).destroy
+  end
+
+  # get the post to show in the wall
+  def feed
+    Post.from_users_followed_by(self)
+  end
   # private methods
   private
 

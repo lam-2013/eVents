@@ -8,6 +8,22 @@ class UsersController < ApplicationController
   before_filter :admin_user, only: :destroy
 
 
+  #followers
+  def followers
+    @title = 'Followers'
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  #following
+  def following
+    @title = 'Following'
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
   #lista user del DB
   def index
     @users = User.paginate(page: params[:page])

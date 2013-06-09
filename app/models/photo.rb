@@ -14,7 +14,7 @@ class Photo < ActiveRecord::Base
   belongs_to :user
 
   # descending order for getting the photos
-  default_scope order: 'posts.created_at DESC'
+  default_scope order: 'photos.created_at DESC'
 
   validates :user_id, presence: true
 

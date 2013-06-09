@@ -13,16 +13,23 @@ SWorD::Application.routes.draw do
   match '/sign_out',  to: 'sessions#destroy', via: :delete
 
   # default routes for the Users controller
-  resources :users
+  resources :users   do
+    member do
+      get :following, :followers
+    end
+  end
 
   #default routes for the Session controller
   resources :sessions,  only: [:new, :create, :destroy]
 
- # default routes for the Posts controller
- resources :posts, only: [:create, :destroy]
+  # default routes for the Posts controller
+  resources :posts, only: [:create, :destroy]
 
- # default routes for the Posts controller
- resources :photos, only: [:create, :destroy]
+  # default routes for the Photos controller
+  resources :photos, only: [:destroy]
+
+  # default routes for the Relatioship controller
+  resources :relationship, only: [:create, :destroy]
 
 
   # The priority is based upon order of creation:

@@ -21,4 +21,16 @@
         <% will_paginate @posts %>
     <% end %>
   </div>
+
+  <div class="span8">
+    <% if @user.photos.any? %>
+        <h3>Photos (<%= @user.photos.count %>)</h3>
+        <ol class="photos">
+          <%= image_tag(@user.photos.content)%>
+        </ol>
+        <% # since we are in a Users view, we need to specify that the pagination is for the posts %>
+        <% will_paginate @photos %>
+    <% end %>
+
+  </div>
 </div>
