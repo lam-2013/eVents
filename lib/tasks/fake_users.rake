@@ -3,9 +3,11 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
+    make_category
     make_posts
     make_photos
     make_relationships
+    make_private_messages
   end
 end
 
@@ -25,7 +27,16 @@ def make_users
                  password: password,
                  password_confirmation: password)
   end
+  users = User.all
+  users_festaiolo = users[0..49]
+  users_promoter = users[50..74]
+  users_placer = users[75..99]
+
+  users_festaiolo.each { |user| user.category=1 }
+  users_promoter.each { |user| user.category=2}
+  users_placer.each { |user| user.category=3 }
 end
+
 
 def make_posts
   # generate 50 fake posts for the first 10 users
@@ -38,11 +49,11 @@ end
 
 def make_photos
   # generate fake photos
-    users = User.all
-    50.times do
-      users.each{ |user| user.photos.create! (content: Dir.glob(File.join(Rails.root, 'sampleimages', '*')).sample)
-      user.save! }
-    end
+  users = User.all
+  20.times do
+    users.each{ |user| user.photos.create!(content: Dir.glob(File.join(Rails.root, 'sampleimages', '*')).sample);
+    user.save! }
+  end
 end
 
 def make_relationships
