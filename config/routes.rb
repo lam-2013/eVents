@@ -19,6 +19,9 @@ SWorD::Application.routes.draw do
     end
   end
 
+  #default routes for the Locals controller
+  resource :locals
+
   #default routes for the Session controller
   resources :sessions,  only: [:new, :create, :destroy]
 
@@ -28,9 +31,15 @@ SWorD::Application.routes.draw do
   # default routes for the Photos controller
   resources :photos, only: [:destroy]
 
+  # default routes for Users_follow_locals cotroller
+  resource :users_follow_locals, only: [:create, :destroy]
+
   # default routes for the Relatioship controller
   resources :relationship, only: [:create, :destroy]
 
+  # default routes for the Messages controller
+  # (only create and destroy - other operations will be done via the Users controller)
+  resources :messages, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

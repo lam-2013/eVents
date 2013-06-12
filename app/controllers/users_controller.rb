@@ -11,12 +11,12 @@ class UsersController < ApplicationController
   #def serarch //metodo per a ricerca
 
   #locali seguiti
- # def locals
-  #  @title = 'Locali seguiti'
-   # @local = Local.find(params[:id])
-    #@locals = @local.followed_locals.paginate(page: params[:page])
-    #render 'show_locals'
-  #end
+  def locals
+    @title = 'Locali seguiti'
+    @local = Local.find(params[:id])
+    @locals = @local.followed_locals.paginate(page: params[:page])
+    render 'show_locals'
+  end
 
   #followers
   def followers

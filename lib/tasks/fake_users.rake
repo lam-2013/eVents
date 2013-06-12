@@ -3,7 +3,7 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
-    make_category
+    make_locals
     make_posts
     make_photos
     make_relationships
@@ -15,26 +15,21 @@ def make_users
   admin = User.create!(name: "Elisabetta",
                        email: "elisabetta.gallione@libero.it",
                        password: "betta88",
-                       password_confirmation: "betta88")
+                       password_confirmation: "betta88",
+                       category: "festaiolo")
   admin.toggle!(:admin)
   99.times do |n|
     name  = Faker::Name.name
     # take users from the Rails Tutorial book since most of them have a "real" profile pic
     email = "example-#{n+1}@railstutorial.org"
     password  = "password"
+    category = "festaiolo"
     User.create!(name: name,
                  email: email,
                  password: password,
-                 password_confirmation: password)
+                 password_confirmation: password,
+                 category: "festaiolo")
   end
-  users = User.all
-  users_festaiolo = users[0..49]
-  users_promoter = users[50..74]
-  users_placer = users[75..99]
-
-  users_festaiolo.each { |user| user.category=1 }
-  users_promoter.each { |user| user.category=2}
-  users_placer.each { |user| user.category=3 }
 end
 
 
@@ -51,9 +46,24 @@ def make_photos
   # generate fake photos
   users = User.all
   20.times do
-    users.each{ |user| user.photos.create!(content: Dir.glob(File.join(Rails.root, 'sampleimages', '*')).sample);
-    user.save! }
+    users.each{ |user| user.photos.create!( content: File.open(Dir.glob(File.join(Rails.root,
+                                          'foto_eVents', '*')).sample)); }
   end
+end
+
+def make_locals
+  9.times do |n|
+    name  = Faker::Name.name
+    Local.create!(name: name)
+  end
+
+end
+
+def make_users_follow_locals
+  local = Local.all
+  users = User.all
+  user =  users.first
+  local.each { |followed| user.follow_local!(followed)}
 end
 
 def make_relationships

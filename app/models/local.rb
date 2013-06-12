@@ -13,7 +13,7 @@ class Local < ActiveRecord::Base
 
    attr_accessible :name
 
-   has_many :reverse_relationships, foreign_key: followed_id, class_name: UsersFollowLocal, dependent: :destroy
+   has_many :reverse_relationships, foreign_key: 'followed_id', class_name: UsersFollowLocal, dependent: :destroy
 
    # name sempre presente lunghezza max 50 caratteri
    validates :name, presence: true, length: {maximum: 50}

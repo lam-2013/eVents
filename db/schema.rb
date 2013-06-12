@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606150307) do
+ActiveRecord::Schema.define(:version => 20130610131907) do
+
+  create_table "locals", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.boolean  "sender_deleted",    :default => false
+    t.boolean  "recipient_deleted", :default => false
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "read_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
 
   create_table "photos", :force => true do |t|
     t.string   "content"
@@ -50,9 +68,21 @@ ActiveRecord::Schema.define(:version => 20130606150307) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           :default => false
+    t.string   "category"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "users_follow_locals", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "users_follow_locals", ["followed_id"], :name => "index_users_follow_locals_on_followed_id"
+  add_index "users_follow_locals", ["follower_id", "followed_id"], :name => "index_users_follow_locals_on_follower_id_and_followed_id", :unique => true
+  add_index "users_follow_locals", ["follower_id"], :name => "index_users_follow_locals_on_follower_id"
 
 end
