@@ -15,7 +15,7 @@ SWorD::Application.routes.draw do
   # default routes for the Users controller
   resources :users   do
     member do
-      get :following, :followers
+      get :following, :followers, :messages # ex.: get /users/1/followers
     end
   end
 

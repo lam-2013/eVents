@@ -5,7 +5,7 @@ namespace :db do
     make_users
     make_locals
     make_posts
-    make_photos
+    #make_photos
     make_relationships
     make_private_messages
   end
@@ -45,7 +45,7 @@ end
 def make_photos
   # generate fake photos
   users = User.all
-  20.times do
+  2.times do
     users.each{ |user| user.photos.create!( content: File.open(Dir.glob(File.join(Rails.root,
                                           'foto_eVents', '*')).sample)); }
   end

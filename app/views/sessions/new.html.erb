@@ -5,7 +5,7 @@
 <% #USER MESSAGE FOR ENTER THEIR NAME AND THEIR PASSWORD %>
       <div class="row">
         <div class="span6 offset3">
-          <%= form_for(:session, url: session_path) do |f| %>
+          <%= form_for(:session, url: sessions_path) do |f| %>
 
               <%= f.label :name %>
               <%= f.text_field :name %>
@@ -19,3 +19,4 @@
           <p>New user? <%= link_to 'Sign up now!', sign_up_path %></p>
         </div>
       </div>
+
