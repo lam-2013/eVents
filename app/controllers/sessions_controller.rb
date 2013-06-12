@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     # check if the retrieved user is valid
     if user && user.authenticate(params[:session][:password])
       # handle successful login
-      signin user # sign in metodo implementato in SessionsHelper
+      sign_in user # sign in metodo implementato in SessionsHelper
       redirect_to user # redirect to user profile page
     else
       # errore nel log_in
@@ -18,13 +18,13 @@ class SessionsController < ApplicationController
       # go back to the sign in page
       render 'new'
     end
+ end
 
   def destroy
     # sign out the current user
     sign_out
     # go to the home_page
     redirect_to root_path
-  end
   end
 
 end

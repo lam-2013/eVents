@@ -1,0 +1,11 @@
+<% provide :title, 'Messages' %>
+
+<h1>Received messages</h1>
+
+<%= will_paginate @messages %>
+
+<ul class="messages">
+  <%= render @messages %>
+</ul>
+
+<%= will_paginate @messages %>

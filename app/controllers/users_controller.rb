@@ -1,12 +1,22 @@
 class UsersController < ApplicationController
 
   # check se utente è già loggato prima di chiamare edit update index e destroy
-  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy]
+  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy,:messages]
   # check se l'utente corrente è l'utente corrente , chiamata prima di edit e di update
-  before_filter :correct_user, only: [:edit, :update]
+  before_filter :correct_user, only: [:edit, :update, :messages]
   # check if the current user is also an admin, filtro applicato solo al destroy per sicurezza!
   before_filter :admin_user, only: :destroy
 
+
+  #def serarch //metodo per a ricerca
+
+  #locali seguiti
+ # def locals
+  #  @title = 'Locali seguiti'
+   # @local = Local.find(params[:id])
+    #@locals = @local.followed_locals.paginate(page: params[:page])
+    #render 'show_locals'
+  #end
 
   #followers
   def followers
@@ -95,6 +105,13 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = 'User deleted!'
     redirect_to users_url
+  end
+
+  # Paginate message index
+  def messages
+    # with the current restrictions, user is always the current_user
+    @user = User.find(params[:id])
+    @messages = @user.received_messages.paginate(page: params[:page])
   end
 
   #DA QUI IN POI SOLO METODI PRIVATI

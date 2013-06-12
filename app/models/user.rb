@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
   # each user can have some photos associated and they must be destroyed together with the user
   has_many :photos, dependent: :destroy
 
+  #for users follow locals
+
+  #utente segue più locali
+  has_many :users_follow_locals, foreign_key: :follower_id, dependent: :destroy
+
 
   #for follower and followed
   has_many :relationships, foreign_key: follower_id, dependent: :destroy
@@ -54,6 +59,22 @@ class User < ActiveRecord::Base
   # password_confirmation sempre presente
   validates :password_confirmation, presence: true
 
+  #utente segue un locale?
+  def following_local?(local)
+    users_follow_locals.find_by_followed_id(local.id)
+  end
+
+  #per seguire un locale
+  def follow_local!(local)
+    users_follow_locals.create!(followed_id:local.id)
+  end
+
+  #per smettere di seguire un locale
+  def unfollow_local!(local)
+    users_follow_locals.find_by_followed_id(local.id).destroy
+  end
+
+
   #un utente ne sta seguendo un altro?
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
@@ -73,6 +94,8 @@ class User < ActiveRecord::Base
   def feed
     Post.from_users_followed_by(self)
   end
+
+
   # private methods
   private
 

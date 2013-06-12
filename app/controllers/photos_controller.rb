@@ -5,6 +5,9 @@ class PhotosController < ApplicationController
   before_filter :correct_user, only: :destroy
 
 
+  def create
+  end
+
   def destroy
     @photo.destroy
     redirect_to current_user
