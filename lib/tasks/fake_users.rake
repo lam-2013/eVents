@@ -7,6 +7,7 @@ namespace :db do
     make_posts
     #make_photos
     make_relationships
+    make_users_follow_locals
     make_private_messages
   end
 end
@@ -32,7 +33,6 @@ def make_users
   end
 end
 
-
 def make_posts
   # generate 50 fake posts for the first 10 users
   users = User.all(limit: 10)
@@ -47,7 +47,7 @@ def make_photos
   users = User.all
   2.times do
     users.each{ |user| user.photos.create!( content: File.open(Dir.glob(File.join(Rails.root,
-                                          'foto_eVents', '*')).sample)); }
+                                          'foto_eVents', 'prova.jpg')).sample)); }
   end
 end
 
@@ -60,10 +60,11 @@ def make_locals
 end
 
 def make_users_follow_locals
-  local = Local.all
+  locals = Local.all
+  local = locals.first
   users = User.all
-  user =  users.first
-  local.each { |followed| user.follow_local!(followed)}
+
+  users.each { |follower| follower.follow_local!(local) }
 end
 
 def make_relationships

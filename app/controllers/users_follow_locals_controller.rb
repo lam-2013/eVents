@@ -14,7 +14,7 @@ class UsersFollowLocalsController < ApplicationController
   end
 
   def destroy
-    @local = UsersFollowLocal.find(params[:id]).followed
+    @local = UsersFollowLocal.find(params[:id]).locale
     current_user.unfollow_local!(@local)
     # without javascript: redirect_to @user
     respond_with @user

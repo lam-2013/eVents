@@ -25,13 +25,14 @@ class User < ActiveRecord::Base
   # each user can have some photos associated and they must be destroyed together with the user
   has_many :photos, dependent: :destroy
 
-  #for users follow locals
-
+  #USER FOLLOW LOCALS
   #utente segue più locali
   has_many :users_follow_locals, foreign_key: 'follower_id', dependent: :destroy
 
+  # A user has many followed locals through these relationship
+  has_many :followed_locals, through: :users_follow_locals, source: :followed
 
-  #for follower and followed
+  #for FOLLOWED AND FOLLOWER
   has_many :relationships, foreign_key: 'follower_id', dependent: :destroy
 
   has_many :followed_users, through: :relationships, source: :followed
@@ -76,7 +77,6 @@ class User < ActiveRecord::Base
   def unfollow_local!(local)
     users_follow_locals.find_by_followed_id(local.id).destroy
   end
-
 
   #un utente ne sta seguendo un altro?
   def following?(other_user)

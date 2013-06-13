@@ -20,7 +20,11 @@ SWorD::Application.routes.draw do
   end
 
   #default routes for the Locals controller
-  resource :locals
+  resource :locals do
+    member do
+      get :followers
+    end
+  end
 
   #default routes for the Session controller
   resources :sessions,  only: [:new, :create, :destroy]

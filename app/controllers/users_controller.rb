@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @title = 'Locali seguiti'
     @local = Local.find(params[:id])
     @locals = @local.followed_locals.paginate(page: params[:page])
-    render 'show_locals'
+    render 'show_follow'
   end
 
   #followers
