@@ -63,6 +63,15 @@ class User < ActiveRecord::Base
   # password_confirmation sempre presente
   validates :password_confirmation, presence: true
 
+  #search
+  def self.search(user_name)
+    if user_name
+      where('name LIKE ?', "%#{user_name}%")
+    else
+      scoped # return an empty result set
+    end
+  end
+
   #utente segue un locale?
   def following_local?(local)
     users_follow_locals.find_by_followed_id(local.id)

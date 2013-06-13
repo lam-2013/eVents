@@ -7,8 +7,11 @@ class UsersController < ApplicationController
   # check if the current user is also an admin, filtro applicato solo al destroy per sicurezza!
   before_filter :admin_user, only: :destroy
 
-
   #def serarch //metodo per a ricerca
+  # Paginated search for users
+  def search
+    @users = User.search(params[:search]).paginate(page: params[:page])
+  end
 
   #locali seguiti
   def locals

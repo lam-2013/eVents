@@ -11,6 +11,10 @@
 
   <%= render 'layouts/header' %>
   <div class="container">
+    <% # the flash message; it supports different type of communications %>
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
     <%= yield %>
 
   <%= render 'layouts/footer' %>

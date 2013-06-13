@@ -17,6 +17,9 @@ SWorD::Application.routes.draw do
     member do
       get :following, :followers, :messages # ex.: get /users/1/followers
     end
+    collection do
+      get :search
+    end
   end
 
   #default routes for the Locals controller
