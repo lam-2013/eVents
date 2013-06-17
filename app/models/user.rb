@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
   # each user can have some photos associated and they must be destroyed together with the user
   has_many :photos, dependent: :destroy
 
+  #user partecipa ad un evento
+  has_many :partecipa_events, foreign_key:'partecipante_id', dependent: :destroy
+  #user ha partecipato a molti eventi tramite questa relazione
+  has_many :followed_events, through: :partecipa_events, source: :evento
+
   #USER FOLLOW LOCALS
   #utente segue più locali
   has_many :users_follow_locals, foreign_key: 'follower_id', dependent: :destroy
@@ -64,13 +69,31 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   #search
-  def self.search(user_name)
-    if user_name
-      where('name LIKE ?', "%#{user_name}%")
+  def self.search(search_name)
+    if search_name
+      where('name LIKE ?', "%#{search_name}%")
+         # 'SELECT * FROM Local WHERE (Local.name LIKE ?)',"%#{search_name}"||
+         # 'SELECT * FROM Event WHERE (Event.name LIKE ?)',"%#{search_name}" )
     else
-      scoped # return an empty result set
+      scoped
     end
   end
+
+  #utente ha partecipato ad un evento?
+  def following_event?(event)
+    partecipa_events.find_by_evento_id(event.id)
+  end
+
+  #per partecipare ad un evento
+  def follow_event!(event)
+    partecipa_events.create!(evento_id:event.id)
+  end
+
+  #per disdire partecipazione
+  def unfollow_event!(event)
+    partecipa_events.find_by_evento_id(event.id).destroy
+  end
+
 
   #utente segue un locale?
   def following_local?(local)

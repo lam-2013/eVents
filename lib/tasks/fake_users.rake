@@ -4,10 +4,12 @@ namespace :db do
   task populate: :environment do
     make_users
     make_locals
+    make_events
     make_posts
     #make_photos
     make_relationships
     make_users_follow_locals
+    make_partecipa_events
     make_private_messages
   end
 end
@@ -19,7 +21,7 @@ def make_users
                        password_confirmation: "betta88",
                        category: "festaiolo")
   admin.toggle!(:admin)
-  99.times do |n|
+  19.times do |n|
     name  = Faker::Name.name
     # take users from the Rails Tutorial book since most of them have a "real" profile pic
     email = "example-#{n+1}@railstutorial.org"
@@ -36,7 +38,7 @@ end
 def make_posts
   # generate 50 fake posts for the first 10 users
   users = User.all(limit: 10)
-  50.times do
+  10.times do
     post_content = Faker::Lorem.sentence(8)
     users.each { |user| user.posts.create!(content: post_content )}
   end
@@ -47,31 +49,48 @@ def make_photos
   users = User.all
   2.times do
     users.each{ |user| user.photos.create!( content: File.open(Dir.glob(File.join(Rails.root,
-                                          'foto_eVents', 'prova.jpg')).sample)); }
+                                          'images', 'rails.png')).sample)); }
   end
 end
 
 def make_locals
-  9.times do |n|
+  5.times do |n|
     name  = Faker::Name.name
-    Local.create!(name: name)
+    Local.create!(name: name,
+                  tipo: 'Nightclubbing')
   end
 
+end
+
+def make_events
+  3.times do |n|
+    name  = Faker::Name.name
+    Event.create!(name: name,
+                  tipo: 'Nightclubbing' )
+  end
+end
+
+def make_partecipa_events
+  events = Event.all
+  event = events.first
+  users = User.all
+  users_fol_event =users[0..10]
+  users_fol_event.each {|partecipante| partecipante.follow_event!(event)}
 end
 
 def make_users_follow_locals
   locals = Local.all
   local = locals.first
   users = User.all
-
-  users.each { |follower| follower.follow_local!(local) }
+  users_fol_local = users[0..10]
+  users_fol_local.each { |follower| follower.follow_local!(local) }
 end
 
 def make_relationships
   users = User.all
   user = users.first
-  followed_users = users[2..50]
-  followers = users[3..40]
+  followed_users = users[2..10]
+  followers = users[3..19]
   # first user follows user 3 up to 51
   followed_users.each { |followed| user.follow!(followed) }
   # users 4 up to 41 follow back the first user
@@ -82,7 +101,7 @@ def make_private_messages
   # generate 10 fake messages for the first user
   first_user = User.first
   users = User.all
-  message_from_users = users[3..12]
+  message_from_users = users[3..7]
   message_from_users.each do |user|
     msg_body = Faker::Lorem.sentence(8)
     msg_subject = Faker::Lorem.sentence(3)

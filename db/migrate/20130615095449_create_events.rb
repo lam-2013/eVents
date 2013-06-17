@@ -1,6 +1,6 @@
-class CreateLocals < ActiveRecord::Migration
+class CreateEvents < ActiveRecord::Migration
   def change
-    create_table :locals do |t|
+    create_table :events do |t|
 
       t.string :name
       t.string :tipo

@@ -13,12 +13,32 @@ class UsersController < ApplicationController
     @users = User.search(params[:search]).paginate(page: params[:page])
   end
 
-  #locali seguiti
+  #tutti i locali
   def locals
+    @title = 'Locali'
+    render 'locals/index'
+  end
+
+  #tutti gli eventi
+  def events
+    @title = 'eVenti'
+    render 'events/index'
+  end
+
+  #eventi a cui si è partecipato
+  def my_events
+    @title = 'Miei eVenti'
+    @user = User.find(params[:id])
+    @events = @user.followed_events.paginate(page: params[:page])
+    render 'show_follow_event'
+  end
+
+  #locali seguiti
+  def my_locals
     @title = 'Locali seguiti'
-    @local = Local.find(params[:id])
-    @locals = @local.followed_locals.paginate(page: params[:page])
-    render 'show_follow'
+    @user = User.find(params[:id])
+    @locals = @user.followed_locals.paginate(page: params[:page])
+    render 'show_follow_local'
   end
 
   #followers

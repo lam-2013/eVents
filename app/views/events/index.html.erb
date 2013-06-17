@@ -1,0 +1,14 @@
+<h1>All events</h1>
+
+<%= will_paginate %>
+
+<ul class="events">
+  <% @events.each do |event| %>
+      <li>
+        <%= gravatar_for event, size: 100%>
+        <%= link_to event.name, event %>
+      </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

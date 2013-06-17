@@ -1,3 +1,3 @@
-$("#follow_local_form").html("<%= escape_javascript(render('locals/follow_local')) %>")
-$("#followers").html('<%= @user.locals.count %>')
+$("#follow_local_form").html("<%= escape_javascript(render('users/follow_local')) %>")
+$("#followers").html('<%= @local.followers.count %>')
 

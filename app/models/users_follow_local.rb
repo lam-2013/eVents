@@ -10,7 +10,7 @@
 #
 class UsersFollowLocal < ActiveRecord::Base
 
-  attr_accessible :followed_id
+  attr_accessible :followed_id, :follower_id
 
   # utente segue più locali
   belongs_to :follower, class_name: 'User'

@@ -11,12 +11,14 @@
 
 class Local < ActiveRecord::Base
 
-   attr_accessible :name
+   attr_accessible :name, :tipo
 
    #A local has many followers through these relationships
    has_many :followers, through: :reverse_users_follow_locals
 
+
    # name sempre presente lunghezza max 50 caratteri
    validates :name, presence: true, length: {maximum: 50}
+
 
 end

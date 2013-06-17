@@ -15,7 +15,7 @@ SWorD::Application.routes.draw do
   # default routes for the Users controller
   resources :users   do
     member do
-      get :following, :followers, :messages # ex.: get /users/1/followers
+      get :following, :followers, :messages,:locals, :events, :my_events, :my_locals # ex.: get /users/1/followers
     end
     collection do
       get :search
@@ -28,6 +28,12 @@ SWorD::Application.routes.draw do
       get :followers
     end
   end
+
+ resource :eventss do
+   member do
+     get :partecipanti
+   end
+ end
 
   #default routes for the Session controller
   resources :sessions,  only: [:new, :create, :destroy]
@@ -44,7 +50,10 @@ SWorD::Application.routes.draw do
   # default routes for the Relatioship controller
   resources :relationship, only: [:create, :destroy]
 
-  # default routes for the Messages controller
+ # default routes for Partecipa_evento controller
+  resource :partecipa_events, only: [:create, :destroy]
+
+   # default routes for the Messages controller
   # (only create and destroy - other operations will be done via the Users controller)
   resources :messages, only: [:new, :create, :destroy]
 

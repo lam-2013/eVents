@@ -1,0 +1,14 @@
+<h1>All locals</h1>
+
+<%= will_paginate %>
+
+<ul class="locals">
+  <% @locals.each do |local| %>
+      <li>
+        <%= gravatar_for local, size: 70%>
+        <%= link_to local.name, local %>
+      </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
