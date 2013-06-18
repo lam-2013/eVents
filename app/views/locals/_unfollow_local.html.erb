@@ -1,4 +1,4 @@
 <% # linked to the destroy action in the User_follow_locals controller %>
 <%= form_for(current_user.users_follow_locals.find_by_followed_id(@local), html: { method: :delete }, remote: true ) do |f| %>
-    <%= f.submit 'Unfollow', class: 'btn btn-large' %>
+    <%= f.submit 'smetti di seguire', class: 'pulsante' %>
 <% end %>

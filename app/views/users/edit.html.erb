@@ -1,30 +1,59 @@
 <% #Provide the page title in a symbol to application.html.erb to avoid duplication %>
 <% provide :title, 'Edit user' %>
-<h1>Aggiorna il tuo profilo!</h1>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+<div id="contenuto">
+  <h1>Aggiorna il tuo profilo!</h1>
 
-        <% #fare partial che qui e log in è uguale (un pezzo) %>
+  <div class="row">
+    <div class="span6 offset3">
+      <%= form_for(@user) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
 
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+          <% #fare partial che qui e log in è uguale (un pezzo) %>
 
-        <%= f.label :email %>
-        <%= f.text_field :email %>
+          <p>Nome </p>
+          <%= f.text_field :name %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password %>
+          <p>Cognome </p>
+          <%= f.text_field :email %>
 
-        <%= f.label :password_confirmation, 'Confirmation' %>
-        <%= f.password_field :password_confirmation %>
+          <p>Data di nascita (gg/mm/aaaa) </p>
+          <p><label><input type="text" name="datanascita" /></label></p>
 
-        <%= f.submit 'Save changes', class: 'btn btn-large btn-primary' %>
-    <% end %>
+          <p>Città </p>
+          <p><label><input type="text" name="citta" /></label></p>
 
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">Change</a>
+          <p>Sesso <label><input type="radio" name="sesso" value="M"/> M</label>
+            <label><input type="radio" name="sesso" value="F"/> F</label></p>
+
+          <p>E-Mail </p>
+          <p><label><input type="text" name="mail" /></label></p>
+
+          <p>Nickname </p>
+          <p><label><input type="text" name="nickname" /></label></p>
+
+          <p>Password </p>
+          <%= f.password_field :password %>
+
+          <p>Conferma password </p>
+          <%= f.password_field :password_confirmation %>
+
+          <p>Sei un Festaiolo, un Placer o un Promoter? </p>
+          <p><select name="categoria">
+            <option value="FES">Festaiolo</option>
+            <option value="PLA">Placer</option>
+            <option value="PRO">Promoter</option>
+          </select></p>
+
+          <p>A che tipo di eventi sei interessato?</p>
+          <p><label><input type="checkbox" name="spettacolo"/> Spettacolo</label></p>
+          <p><label><input type="checkbox" name="food"/> Food&Restaurant</label></p>
+          <p><label><input type="checkbox" name="night"/> Nightclubbing</label></p>
+
+      <% end %>
+
+      <%= gravatar_for @user %>
+      <a href="http://gravatar.com/emails">Cambia la tua immagine</a>
+    </div>
   </div>
 </div>

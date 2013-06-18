@@ -7,39 +7,44 @@ class UsersController < ApplicationController
   # check if the current user is also an admin, filtro applicato solo al destroy per sicurezza!
   before_filter :admin_user, only: :destroy
 
+
+  #def hints// metodo per i suggerimenti
+  def hints
+    @users_for_cat = User.category_condition
+
+    #utenti finali pronti oer essere suggeriti
+    @users
+
+    @users_for_cat.each do |user|
+      if current_user.followed_users.include? user.id
+      else
+      @users + user
+    end
+    end
+
+     render 'hints'
+end
+
   #def serarch //metodo per a ricerca
   # Paginated search for users
   def search
     @users = User.search(params[:search]).paginate(page: params[:page])
   end
 
-  #tutti i locali
-  def locals
-    @title = 'Locali'
-    render 'locals/index'
-  end
-
-  #tutti gli eventi
-  def events
-    @title = 'eVenti'
-    render 'events/index'
-  end
-
-  #eventi a cui si è partecipato
-  def my_events
-    @title = 'Miei eVenti'
-    @user = User.find(params[:id])
-    @events = @user.followed_events.paginate(page: params[:page])
-    render 'show_follow_event'
-  end
-
-  #locali seguiti
+  #miei locali
   def my_locals
-    @title = 'Locali seguiti'
+    @title = 'Followed Locals'
     @user = User.find(params[:id])
     @locals = @user.followed_locals.paginate(page: params[:page])
-    render 'show_follow_local'
   end
+
+  #miei eventi
+  def my_events
+    @title = 'miei eVenti'
+    @user = User.find(params[:id])
+    @events = @user.followed_events.paginate(page: params[:page])
+  end
+
 
   #followers
   def followers
@@ -120,7 +125,6 @@ class UsersController < ApplicationController
     @posts = @user.posts.paginate(page: params[:page])
     # get and paginate the photos associated to the specified user
     @photos = @user.photos.paginate(page: params[:page])
-
  end
 
   #candella utente

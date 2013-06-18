@@ -2,29 +2,43 @@
 <% provide :title, 'Home' %>
 
 <% if signed_in? %>
-    <div class="row">
-      <aside class="span3">
-        <section>
-          <%= render 'shared/user_info' %>
-        </section>
-        <section>
-          <%= render 'shared/stats' %>
-        </section>
-      </aside>
-      <div class="span9">
-        <%= render 'shared/post_form' %>
-        <h3>Bacheca</h3>
-        <%= render 'shared/feed' %>
+    <div id="contenuto">
+      <div class="row">
+        <aside class="span3">
+          <section>
+            <%= render 'shared/user_info' %>
+          </section>
+          <section>
+            <%= render 'shared/stats' %>
+          </section>
+          <section>
+            <ul class="nav">
+              <li class="selected"><a href="#"><center>BACHECA AMICI</center></a></li>
+              <li><a href="#"><center>Spettacolo</center></a></li>
+              <li><a href="#"><center>Food&Restaurant</center></a></li>
+              <li><a href="#"><center>Nightclubbing</center></a></li>
+              <p><label><input type="checkbox" name="seguo"/> Mostra solo i locali che seguo</label></p>
+            </ul>
+          </section>
+        </aside>
+        <div class="span9">
+          <%= render 'shared/post_form' %>
+          <h3>BACHECA AMICI</h3>
+          <%= render 'shared/feed' %>
+        </div>
       </div>
     </div>
 <% else %>
-    <div class="center hero-unit">
-      <h1>Welcome to eVents</h1>
+    <div id="contenuto">
 
+      <h1>Welcome to <%=image_tag('logo.jpg')%></h1>
       <h2>
-        Sign up or login to start using <%= link_to "eVents", '#'%>.
+        Entra subito e... da' il via alla festa!
+      </h2>
+      <h2>
+        Hai già un account eVents? Effettua il Login!
       </h2>
 
-      <%= link_to 'Sign up now!', sign_up_path, class: 'btn btn-large btn-primary' %>
+      <center><%= link_to "ISCRIVITI",sign_up_path, class: "pulsante" %></center>
     </div>
 <% end %>

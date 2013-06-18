@@ -5,7 +5,6 @@ SWorD::Application.routes.draw do
  #named routs for static page and signIn signUp
   match '/about', to: 'pages#about'
   match '/contact', to: 'pages#contact'
-  match '/faq', to: 'pages#faq'
   match '/sign_in', to: 'sessions#new'
   match '/sign_up', to: 'users#new'
 
@@ -15,7 +14,7 @@ SWorD::Application.routes.draw do
   # default routes for the Users controller
   resources :users   do
     member do
-      get :following, :followers, :messages,:locals, :events, :my_events, :my_locals # ex.: get /users/1/followers
+      get :following, :followers,:messages,:my_events,:my_locals, :hints # ex.: get /users/1/followers
     end
     collection do
       get :search
@@ -23,17 +22,9 @@ SWorD::Application.routes.draw do
   end
 
   #default routes for the Locals controller
-  resource :locals do
-    member do
-      get :followers
-    end
-  end
+  resource :locals
 
- resource :eventss do
-   member do
-     get :partecipanti
-   end
- end
+  resource :events
 
   #default routes for the Session controller
   resources :sessions,  only: [:new, :create, :destroy]

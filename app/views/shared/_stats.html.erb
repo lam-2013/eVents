@@ -1,34 +1,43 @@
 <% # we are going to use this partial in the home and in the user profile;
    # in the home @user is nil and needs to be filled %>
 <% @user ||= current_user %>
-<div class="stats">
+<div class="stats" xmlns="http://www.w3.org/1999/html">
   <a href="<%= following_user_path(@user) %>">
     <strong id="following" class="stat">
       <%= @user.followed_users.count %>
     </strong>
     following
   </a>
+</div>
+
+  <div class="stats"  xmlns="http://www.w3.org/1999/html">
   <a href="<%= followers_user_path(@user) %>">
     <strong id="followers" class="stat">
       <%= @user.followers.count %>
     </strong>
     followers
   </a>
+</div>
 
-  <a href="<%= locals_user_path(@user) %>">
+  <div class="stats"  xmlns="http://www.w3.org/1999/html">
+  <a href="<%= my_locals_user_path(@user) %>">
     <strong id="my_locals" class="stat">
       <%= @user.followed_locals.count %>
     </strong>
     followed locals
   </a>
+ </div>
 
-  <a href="<%= events_user_path(@user) %>">
+  <div class="stats"  xmlns="http://www.w3.org/1999/html">
+  <a href="<%= my_events_user_path(@user) %>">
     <strong id="my_events" class="stat">
       <%= @user.followed_events.count %>
     </strong>
     My eVents
   </a>
+  </div>
 
+  <div class="stats"  xmlns="http://www.w3.org/1999/html">
   <% if current_user?(@user) %>
       <a href= "<%= messages_user_path(@user) %>">
         <strong id="unread_messages" class="stat">
@@ -38,3 +47,6 @@
       </a>
   <% end %>
 </div>
+
+
+

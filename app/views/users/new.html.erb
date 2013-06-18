@@ -1,26 +1,50 @@
 <% #Provide the page title in a symbol to application.html.erb to avoid duplication %>
 <% provide :title, 'Sign up' %>
 
-<h1>Registrati</h1>
+<div id="contenuto">
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+  <h1>Registrati</h1>
+  <h2>Inserisci i tuoi dati nei campi sottostanti:</h2>
 
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+  <p>Nome </p>
+  <p><label><input type="text" name="nome" /></label></p>
 
-        <%= f.label :email %>
-        <%= f.text_field :email %>
+  <p>Cognome </p>
+  <p><label><input type="text" name="cognome" /></label></p>
 
-        <%= f.label :password %>
-        <%= f.password_field :password %>
+  <p>Data di nascita (gg/mm/aaaa) </p>
+  <p><label><input type="text" name="datanascita" /></label></p>
 
-        <%= f.label :password_confirmation, 'Confirmation' %>
-        <%= f.password_field :password_confirmation %>
+  <p>Città </p>
+  <p><label><input type="text" name="citta" /></label></p>
 
-        <%= f.submit 'Crea il mio account', class: 'btn btn-large btn-primary' %>
-    <% end %>
-  </div>
+  <p>Sesso <label><input type="radio" name="sesso" value="M"/> M</label>
+    <label><input type="radio" name="sesso" value="F"/> F</label></p>
+
+  <p>E-Mail </p>
+  <p><label><input type="text" name="mail" /></label></p>
+
+  <p>Nickname </p>
+  <p><label><input type="text" name="nickname" /></label></p>
+
+  <p>Password </p>
+  <p><label><input type="text" name="password" /></label></p>
+  <p>Conferma password </p>
+  <p><label><input type="text" name="confpassword" /></label></p>
+
+  <p>Sei un Festaiolo, un Placer o un Promoter? </p>
+  <p><select name="categoria">
+    <option value="FES">Festaiolo</option>
+    <option value="PLA">Placer</option>
+    <option value="PRO">Promoter</option>
+  </select></p>
+
+  <p>A che tipo di eventi sei interessato?</p>
+  <p><label><input type="checkbox" name="spettacolo"/> Spettacolo</label></p>
+  <p><label><input type="checkbox" name="food"/> Food&Restaurant</label></p>
+  <p><label><input type="checkbox" name="night"/> Nightclubbing</label></p>
+
+  <p><input type="submit" value="Registrati" class="pulsante"/></p>
+
+</div>
 </div>

@@ -1,15 +1,18 @@
 <% provide(:title, @title) %>
 
+<div id="contenuto">
+
 <div class="row">
   <aside class="span4">
     <section>
       <%= gravatar_for @user %>
       <h1><%= @user.name %></h1>
-      <span><%= link_to 'View my profile', @user %></span>
+      <span><%= link_to 'Visualizza profilo', @user %></span>
       <span><b>Posts:</b> <%= @user.posts.count %></span>
     </section>
     <section>
       <%= render 'shared/stats' %>
+
       <% if @users.any? %>
           <div class="user_avatars">
             <% @users.each do |user| %>
@@ -28,4 +31,5 @@
         <%= will_paginate %>
     <% end %>
   </div>
+</div>
 </div>

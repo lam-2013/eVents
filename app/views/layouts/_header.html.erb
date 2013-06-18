@@ -1,29 +1,22 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "eVents", root_path, id: "logo" %>
-      <nav>
+    <nav>
+      <div class="container">
+        <%= link_to image_tag('logo.jpg'), root_path, id: "logo" %>
         <ul class="nav pull-right">
           <% #link_to is the Rails helper to create links (it generates <a...> tags) %>
-          <li><%=link_to "Home",    root_path %></li>
-          <li><%=link_to "Faq",     faq_path %></li>
-          <% if signed_in? %>
-              <li><%= render 'users/search_form' %></li>
-              <li><%= link_to "Users", users_path %></li>
-              <li id="fat-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", current_user %></li>
-                  <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                  <li class="divider"></li>
-                  <li><%= link_to "Sign out", sign_out_path, method: "delete" %></li>
-                </ul>
-              </li>
+          <li>
+            <% if signed_in? %>
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Profilo", current_user %></li>
+              <li><%= link_to "Utenti", users_path %></li>
+              <li><%= link_to "Impostazioni", edit_user_path(current_user) %></li>
+              <li><%= link_to "Log out", sign_out_path, method: "delete" %></li>
           <% else %>
-              <li><%=link_to "Sign in", sign_in_path %></li>
+              <li><%=link_to "Log in", sign_in_path %></li>
           <% end %>
         </ul>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </div>
 </header>

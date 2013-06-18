@@ -68,6 +68,11 @@ class User < ActiveRecord::Base
   # password_confirmation sempre presente
   validates :password_confirmation, presence: true
 
+  #hints
+  def self.category_condition()
+    where ['User.find_by_category LIKE?' ,'current_user.category']
+  end
+
   #search
   def self.search(search_name)
     if search_name

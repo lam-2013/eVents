@@ -6,7 +6,7 @@ namespace :db do
     make_locals
     make_events
     make_posts
-    #make_photos
+    make_photos
     make_relationships
     make_users_follow_locals
     make_partecipa_events
@@ -48,8 +48,8 @@ def make_photos
   # generate fake photos
   users = User.all
   2.times do
-    users.each{ |user| user.photos.create!( content: File.open(Dir.glob(File.join(Rails.root,
-                                          'images', 'rails.png')).sample)); }
+    users.each{ |user| user.photos.create!( content: (Dir.glob(File.join(Rails.root,
+                                          'app/assets/images', '*')).sample)); }
   end
 end
 
