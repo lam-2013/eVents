@@ -1,0 +1,11 @@
+<% provide :title, 'Locali seguiti' %>
+
+<h1>Locali seguiti</h1>
+
+<%= will_paginate @locals %>
+
+<ul class="locals">
+  <%= render @locals %>
+</ul>
+
+<%= will_paginate @locals %>

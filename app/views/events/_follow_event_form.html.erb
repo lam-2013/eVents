@@ -1,0 +1,10 @@
+<% unless current_user?(@user) %>
+    <div id="follow_event_form">
+      <% if current_user.followed_events?(@event) %>
+          <%= render 'events/unfollow_event' %>
+      <% else %>
+          <%= render 'events/follow_event' %>
+      <% end %>
+
+    </div>
+<% end %>

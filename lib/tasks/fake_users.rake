@@ -47,9 +47,9 @@ end
 def make_photos
   # generate fake photos
   users = User.all
-  2.times do
+  5.times do
     users.each{ |user| user.photos.create!( content: (Dir.glob(File.join(Rails.root,
-                                          'app/assets/images', '*')).sample)); }
+                                          'app/assets/foto_eVents', '*')).sample)); }
   end
 end
 

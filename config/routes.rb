@@ -14,17 +14,29 @@ SWorD::Application.routes.draw do
   # default routes for the Users controller
   resources :users   do
     member do
-      get :following, :followers,:messages,:my_events,:my_locals, :hints # ex.: get /users/1/followers
+      get :following,:followers,:messages,:photos,
+          :my_events,:my_locals,:events, :event_nightclubbing, :event_f_r,
+          :event_spettacolo, :hints # ex.: get /users/1/followers
     end
+
+    collection do
+      get :search
+    end
+
+  end
+
+  #default routes for the Locals controller
+  resource :locals do
     collection do
       get :search
     end
   end
 
-  #default routes for the Locals controller
-  resource :locals
-
-  resource :events
+  resource :events do
+    collection do
+      get :search
+    end
+  end
 
   #default routes for the Session controller
   resources :sessions,  only: [:new, :create, :destroy]

@@ -12,15 +12,16 @@
           </h1>
         </div>
       </section>
-
-
       <section>
         <%= image_tag('medaglie.jpg') %>
       </section>
+      <span>
+       <span><%= link_to 'Potresti conoscere...',hints_user_path(@user)%></span>
+      </span>
       <section>
         <ul class="nav">
           <li class="selected"><a href="#"><center>Calendario</center></a></li>
-          <li><a href="#"><center>Foto</center></a></li>
+          <li><a href="<%= photos_user_path(@user) %>"><center>Foto</center></a></li>
           <li><a href="<%= messages_user_path(@user) %>"><center>Messaggi</center></a></li>
           <li><a href="<%= followers_user_path(@user) %>"><center>Follower</center></a></li>
           <li><a href="<%= following_user_path(@user) %>"><center>Following</center></a></li>
@@ -49,24 +50,12 @@
     </div>
 
     <div class="span8">
-      <% if @user.photos.any? %>
-          <h3>Photos (<%= @user.photos.count %>)</h3>
-          <ol class="photos">
-            <%= render @photos%>
-          </ol>
-          <% # since we are in a Users view, we need to specify that the pagination is for the posts %>
-          <% will_paginate @photos %>
-      <% end %>
-
-    </div>
-
-    <div class="span8">
       <% if @user.followed_locals.any? %>
           <h3>Locals (<%= @user.followed_locals.count %>)</h3>
           <ol class="locals">
             <% #= render @locals%>
           </ol>
-          <% # since we are in a Users view, we need to specify that the pagination is for the posts %>
+          <% # since we are in a Users view, we need to specify that the pagination is for the locals %>
           <% #will_paginate @locals %>
       <% end %>
 

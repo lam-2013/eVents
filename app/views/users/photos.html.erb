@@ -1,0 +1,11 @@
+<% provide :title, 'Photos' %>
+
+<h1>Le mie foto</h1>
+
+<%= will_paginate @photos %>
+
+<ul class="photos">
+  <%= render @photos %>
+</ul>
+
+<%= will_paginate @photos %>

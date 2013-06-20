@@ -14,10 +14,9 @@
           <section>
             <ul class="nav">
               <li class="selected"><a href="#"><center>BACHECA AMICI</center></a></li>
-              <li><a href="#"><center>Spettacolo</center></a></li>
-              <li><a href="#"><center>Food&Restaurant</center></a></li>
-              <li><a href="#"><center>Nightclubbing</center></a></li>
-              <p><label><input type="checkbox" name="seguo"/> Mostra solo i locali che seguo</label></p>
+              <li><a href="<%= event_spettacolo_user_path(@user) %>"><center>Spettacolo</center></a></li>
+              <li><a href="<%= event_f_r_user_path(@user) %>"><center>Food&Restaurant</center></a></li>
+              <li><a href="<%= event_nightclubbing_user_path(@user) %>" ><center>Nightclubbing</center></a></li>
             </ul>
           </section>
         </aside>

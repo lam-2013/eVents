@@ -1,29 +1,29 @@
 class UsersController < ApplicationController
 
   # check se utente è già loggato prima di chiamare edit update index e destroy
-  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy,:messages]
+  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy,:messages,:photos]
   # check se l'utente corrente è l'utente corrente , chiamata prima di edit e di update
-  before_filter :correct_user, only: [:edit, :update, :messages]
+  before_filter :correct_user, only: [:edit, :update, :messages, :photos]
   # check if the current user is also an admin, filtro applicato solo al destroy per sicurezza!
   before_filter :admin_user, only: :destroy
+
+  #autocomplete :user, :name, :full => true
 
 
   #def hints// metodo per i suggerimenti
   def hints
-    @users_for_cat = User.category_condition
+    @user = User.find(params[:id])
+    @users = User.category_condition(current_user)
 
-    #utenti finali pronti oer essere suggeriti
-    @users
+    #@users = @hint - @user
 
-    @users_for_cat.each do |user|
-      if current_user.followed_users.include? user.id
-      else
-      @users + user
-    end
-    end
+    #@hint.each do |user|
+     # if @user.following?(user)
+     # @users = @users - user
+     # end
+   # end
 
-     render 'hints'
-end
+  end
 
   #def serarch //metodo per a ricerca
   # Paginated search for users
@@ -31,16 +31,35 @@ end
     @users = User.search(params[:search]).paginate(page: params[:page])
   end
 
+  def event_spettacolo
+    @title = 'Eventi about spettacolo'
+    @user = User.find(params[:id])
+    @events = Event.search(params["Spettacolo"]).paginate(page: params[:page])
+    render 'events/index'
+  end
+
+  def event_f_r
+    @title = 'Eventi about Food&Restaurant'
+    @user = User.find(params[:id])
+    @events = Event.search("Food&restaurant").paginate(page: params[:page])
+    render 'events/index'
+  end
+
+  def event_nightclubbing
+    @title = 'Eventi about Food&Restaurant'
+    @user = User.find(params[:id])
+    @events = Event.search('Nightclubbing').paginate(page:params[:page])
+    render 'events/index'
+  end
+
   #miei locali
   def my_locals
-    @title = 'Followed Locals'
     @user = User.find(params[:id])
     @locals = @user.followed_locals.paginate(page: params[:page])
   end
 
   #miei eventi
   def my_events
-    @title = 'miei eVenti'
     @user = User.find(params[:id])
     @events = @user.followed_events.paginate(page: params[:page])
   end
@@ -132,6 +151,12 @@ end
     User.find(params[:id]).destroy
     flash[:success] = 'User deleted!'
     redirect_to users_url
+  end
+
+  def photos
+    # with the current restrictions, user is always the current_user
+    @user = User.find(params[:id])
+    @photos = @user.photos.paginate(page: params[:page])
   end
 
   # Paginate message index

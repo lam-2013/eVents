@@ -69,16 +69,16 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   #hints
-  def self.category_condition()
-    where ['User.find_by_category LIKE?' ,'current_user.category']
+  def self.category_condition(user)
+    followed_user_ids = 'SELECT followed_id FROM relationships WHERE follower_id = :user_id'
+    where("category LIKE? %#{user.category}% AND id <> :user_id AND id NOT IN (#{followed_user_ids})",user_id: user.id)
+    #where( "category LIKE ?","%#{user.category}%")
   end
 
   #search
   def self.search(search_name)
     if search_name
       where('name LIKE ?', "%#{search_name}%")
-         # 'SELECT * FROM Local WHERE (Local.name LIKE ?)',"%#{search_name}"||
-         # 'SELECT * FROM Event WHERE (Event.name LIKE ?)',"%#{search_name}" )
     else
       scoped
     end
