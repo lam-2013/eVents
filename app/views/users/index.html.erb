@@ -1,6 +1,8 @@
 <% #Provide the page title in a symbol to application.html.erb to avoid duplication %>
 <% provide :title, 'All Users' %>
 
+<div id="contenuto">
+
 <h1>Utenti di eVents <%= render 'users/search_form' %></h1>
 <div>
 <%= will_paginate %>
@@ -19,4 +21,5 @@
 </ul>
 
 <%= will_paginate %>
+</div>
 </div>

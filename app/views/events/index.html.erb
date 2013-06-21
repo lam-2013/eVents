@@ -1,5 +1,7 @@
 <% provide :title, @title %>
 
+<div id="contenuto">
+<h1><%= @title %></h1>
 <%= will_paginate @events %>
 
 <ul class="events">
@@ -7,3 +9,4 @@
 </ul>
 
 <%= will_paginate @events %>
+</div>

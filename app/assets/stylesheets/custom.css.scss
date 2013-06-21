@@ -24,6 +24,9 @@ body {
 
 section {
   overflow: auto;
+  .btn.btn-info {
+background-color: red;
+  }
 }
 
 textarea {
@@ -41,11 +44,11 @@ textarea {
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: calibri;
   line-height: 1;
 }
 
 h1 {
-  font: calibri;
   font-size: 4em;
   letter-spacing: -2px;
   margin-bottom: 30px;
@@ -114,7 +117,13 @@ p {
   margin-left:5px;
   margin-right:5px;
   width:100%;
+  min-width:900px;
+  .alert.alert-success{
+    margin-top:50px;
+    margin-left:450px;
+    width:400px;
 
+  }
 }
 
 #contenuto{
@@ -123,12 +132,15 @@ p {
   margin-left:0px;
   margin-right:0px;
   background-color:black;
+  width:100%;
+  min-width:900px;
 }
 
 /* header */
 
 
 header {
+  position: relative;
   background:black;
   border-bottom: 2px solid green;
   small {
@@ -421,10 +433,12 @@ a {
 nav {
   background-color:black;
   min-width:900px;
+  width: 100%;
 }
 navbar-inner {
   background-color:black;
   min-width:900px;
+  width: 100%;
 }
 
 #foot{

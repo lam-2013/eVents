@@ -22,21 +22,21 @@ class UsersController < ApplicationController
   end
 
   def event_spettacolo
-    @title = 'Eventi about spettacolo'
+    @title = 'Categoria spettacolo'
     @user = User.find(params[:id])
     @events = Event.search(params["Spettacolo"]).paginate(page: params[:page])
     render 'events/index'
   end
 
   def event_f_r
-    @title = 'Eventi about Food&Restaurant'
+    @title = 'Categoria Food&Restaurant'
     @user = User.find(params[:id])
     @events = Event.search("Food&restaurant").paginate(page: params[:page])
     render 'events/index'
   end
 
   def event_nightclubbing
-    @title = 'Eventi about Food&Restaurant'
+    @title = 'Categoria Nightclubbing'
     @user = User.find(params[:id])
     @events = Event.search('Nightclubbing').paginate(page:params[:page])
     render 'events/index'

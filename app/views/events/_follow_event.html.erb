@@ -2,5 +2,5 @@
 <%= form_for(current_user.PartecipaEvent.build(evento_id: @evento.id), remote: true) do |f| %>
     <% # the hidden field contains the information needed for following a user %>
     <div><%= f.hidden_field :partecipante_id %></div>
-    <%= f.submit 'Partecipa', class: 'btn btn-large btn-primary' %>
+    <%= f.submit 'Partecipa', class: 'pulsante' %>
 <% end %>

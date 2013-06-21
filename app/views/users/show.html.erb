@@ -45,7 +45,7 @@
         </section>
     <% end %>
 
-    <div class="span8">
+    <div id="span8">
       <%= render 'follow_form' if signed_in? %>
       <%= image_tag('calendario.jpg') %>
       <% if @user.posts.any? %>

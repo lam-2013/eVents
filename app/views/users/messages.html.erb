@@ -1,6 +1,7 @@
 <% provide :title, 'Messages' %>
 
-<h1>Received messages</h1>
+<div id="contenuto">
+<h1>Messaggi ricevuti</h1>
 
 <%= will_paginate @messages %>
 
@@ -9,3 +10,4 @@
 </ul>
 
 <%= will_paginate @messages %>
+</div>

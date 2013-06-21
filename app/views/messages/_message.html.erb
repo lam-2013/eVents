@@ -6,7 +6,7 @@
   </span>
   <span class="content"><%= message.body %></span>
   <span class="timestamp">
-    Sent <%= time_ago_in_words(message.created_at) %> ago
+    Inviato <%= time_ago_in_words(message.created_at) %> fa
   </span>
   <% if current_user?(message.recipient) %>
       | <%= link_to 'delete', message, method: :delete, data: { confirm: 'Are you sure?' }, title: message.subject %>
