@@ -11,10 +11,18 @@
             <%= @user.name %>
           </h1>
         </div>
+        <section>
+          <%= render 'shared/stats' %>
+        </section>
       </section>
       <section>
-        <%= image_tag('medaglie.jpg') %>
+        <%= image_tag('etichetta.jpg') %>
       </section>
+      <sectionbis>
+        <%= image_tag('showman.jpg', title:'Partecipa a 5 spettacoli/concerti (categoria SPETTACOLO)') %>
+        <%= image_tag('bohemien.jpg', title:'Fai cena/apericena in 5 locali diversi (categoria FOOD&RESTAURANT)') %>
+        <%= image_tag('shakeselected.jpg', title:'Partecipa a 5 eventi della categoria NIGHTCLUBBING') %>
+      </sectionbis>
       <span>
        <span><%= link_to 'Potresti conoscere...',hints_user_path(@user)%></span>
       </span>
@@ -39,6 +47,7 @@
 
     <div class="span8">
       <%= render 'follow_form' if signed_in? %>
+      <%= image_tag('calendario.jpg') %>
       <% if @user.posts.any? %>
           <h3>Posts (<%= @user.posts.count %>)</h3>
           <ol class="posts">
@@ -48,16 +57,6 @@
           <% will_paginate @posts %>
       <% end %>
     </div>
-
-    <div class="span8">
-      <% if @user.followed_locals.any? %>
-          <h3>Locals (<%= @user.followed_locals.count %>)</h3>
-          <ol class="locals">
-            <% #= render @locals%>
-          </ol>
-          <% # since we are in a Users view, we need to specify that the pagination is for the locals %>
-          <% #will_paginate @locals %>
-      <% end %>
 
     </div>
   </div>

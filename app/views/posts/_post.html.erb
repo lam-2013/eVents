@@ -4,7 +4,7 @@
     Posted <%= time_ago_in_words(post.created_at) %> ago
   </span>
   <% if current_user?(post.user) %>
-      | <%= link_to 'delete', post, method: :delete, data: { confirm: 'Sei sicuro di voler eliminare il post?' },
+      | <%= link_to 'elimina', post, method: :delete, data: { confirm: 'Sei sicuro di voler eliminare il post?' },
                     title: post.content %>
   <% end %>
 </li>

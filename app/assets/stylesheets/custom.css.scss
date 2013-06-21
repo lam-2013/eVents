@@ -94,6 +94,7 @@ p {
   border:1px solid #4b8f29;
   font-family:Trebuchet MS;
   font-size:17px;
+  min-width:105px;
   padding:6px 11px;
   color:#ffffff;
 
@@ -102,17 +103,25 @@ p {
   background-color:black;
   font-family:Trebuchet MS;
   font-size:17px;
+  min-width:105px;
   padding:6px 11px;
   text-decoration:none;
   color:white;
 }
 
-#container {
-  background-color: black;
+.container {
+  background-color:black;
+  margin-left:5px;
+  margin-right:5px;
+  width:100%;
+
 }
 
 #contenuto{
   margin-top:40px;
+  margin-bottom:40px;
+  margin-left:0px;
+  margin-right:0px;
   background-color:black;
 }
 
@@ -120,21 +129,21 @@ p {
 
 
 header {
-
+  background:black;
   border-bottom: 2px solid green;
   small {
     float: left;
   }
 
   ul {
-    list-style: none;
     background-color:black;
-    padding: 10px;
+    list-style: none;
+    padding: 14px;
     color:white;
   }
 
   ul li {
-    background-color: black;
+    background-color:black;
     color:white;
   }
 
@@ -152,6 +161,8 @@ header {
   ul a:hover {
   }
   ul a:focus{
+    color: white;
+    background-color: limegreen;
   }
   ul .selected a {
     color: white;
@@ -172,10 +183,12 @@ header {
 /* footer */
 
 footer {
+  position: relative;
   margin-top: 45px;
-  padding-top: 5px;
+
   border-top: 2px solid green;
-  color: lightgray;
+  color: black;
+  height: 40px;
   a {
     color: lightgray;
     &:hover {
@@ -191,7 +204,7 @@ footer {
     list-style: none;
     li {
       float: right;
-      margin-right: 10px;
+      margin-right: 25px;
       float: top;
       margin-top: 10px;
       color: white;
@@ -204,6 +217,8 @@ footer {
 
 
 aside {
+  position: relative;
+  min-width:300px;
   section {
     padding: 10px 0;
     border-top: 1px solid $grayLighter;
@@ -222,16 +237,19 @@ aside {
         color: white;
       }
     }
-  }
-  h1 {
-    font-size: 1.4em;
-    text-align: left;
-    letter-spacing: -1px;
-    margin-bottom: 3px;
-    margin-top: 0px;
+
+    sectionbis {
+      padding: 10px 0;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
   }
 }
-
 
 
 ul.nav {
@@ -264,6 +282,8 @@ ul.nav a:hover{
   background-color: black;
 }
 ul.nav a:focus{
+  color: white;
+  background-color: limegreen;
 }
 ul.nav .selected a {
   color: white;
@@ -396,4 +416,29 @@ a {
     text-decoration: none;
     color: lightgreen;
   }
+}
+
+nav {
+  background-color:black;
+  min-width:900px;
+}
+navbar-inner {
+  background-color:black;
+  min-width:900px;
+}
+
+#foot{
+  background-color: #222222;
+  min-width:900px;
+}
+
+#span8{
+  position:relative;
+  min-width:600px;
+  margin-left:350px;
+}
+
+#new_post{
+  height:100px;
+  min-width:900px;
 }

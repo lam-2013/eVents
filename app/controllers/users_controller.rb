@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
   # check se utente è già loggato prima di chiamare edit update index e destroy
-  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy,:messages,:photos]
+  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy,:messages]
   # check se l'utente corrente è l'utente corrente , chiamata prima di edit e di update
-  before_filter :correct_user, only: [:edit, :update, :messages, :photos]
+  before_filter :correct_user, only: [:edit, :update, :messages]
   # check if the current user is also an admin, filtro applicato solo al destroy per sicurezza!
   before_filter :admin_user, only: :destroy
 
@@ -12,17 +12,7 @@ class UsersController < ApplicationController
 
   #def hints// metodo per i suggerimenti
   def hints
-    @user = User.find(params[:id])
     @users = User.category_condition(current_user)
-
-    #@users = @hint - @user
-
-    #@hint.each do |user|
-     # if @user.following?(user)
-     # @users = @users - user
-     # end
-   # end
-
   end
 
   #def serarch //metodo per a ricerca

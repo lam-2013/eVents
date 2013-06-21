@@ -1,9 +1,16 @@
-<footer class="footer">
-  <nav>
+<footer class="navbar navbar-fixed-bottom navbar-inverse">
+  <div class="navbar-inner">
+
+    <nav id="foot">
+    <span id="container">
     <ul>
+
       <li><%= link_to "About",   about_path %></li>
       <li><%= link_to "Contact", contact_path %></li>
       <li><a href="http://bit.ly/lingambmult" alt="Linguaggi e Ambienti Multimediali">News</a></li>
+      <li><left><%= audio_tag 'edge.MP3', controls: true, loop:true %></left></li>
     </ul>
-  </nav>
+        </span>
+    </nav>
+  </div>
 </footer>
