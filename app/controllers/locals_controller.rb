@@ -5,7 +5,7 @@ class LocalsController < ApplicationController
   # check if the user is allowed to delete a post
   before_filter :correct_user
 
-
+  respond_to :html ,:js
   private
 
   def correct_user

@@ -70,9 +70,10 @@ class User < ActiveRecord::Base
 
   #hints
   def self.category_condition(user)
-    followed_user_ids = 'SELECT followed_id FROM relationships WHERE follower_id = :user_id'
-    where("category LIKE? %#{user.category}% AND id <> :user_id AND id NOT IN (#{followed_user_ids})",user_id: user.id)
-    #where( "category LIKE ?","%#{user.category}%")
+   followed_user_ids = 'SELECT followed_id FROM relationships WHERE follower_id = :user_id'
+   where("name <>  (#{user.name}
+           AND category LIKE ? (#{user.category})
+             AND (#{user.id}) NOT IN (#{followed_user_ids})" ,user_id: user.id)
   end
 
   #search

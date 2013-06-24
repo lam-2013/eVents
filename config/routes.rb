@@ -60,6 +60,7 @@ SWorD::Application.routes.draw do
   # (only create and destroy - other operations will be done via the Users controller)
   resources :messages, only: [:new, :create, :destroy]
 
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

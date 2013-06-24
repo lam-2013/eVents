@@ -7,12 +7,12 @@ class UsersController < ApplicationController
   # check if the current user is also an admin, filtro applicato solo al destroy per sicurezza!
   before_filter :admin_user, only: :destroy
 
-  #autocomplete :user, :name, :full => true
-
+  respond_to :html ,:js
 
   #def hints// metodo per i suggerimenti
   def hints
-    @users = User.category_condition(current_user)
+    @user = User.find(params[:id])
+    @users = User.category_condition(@user)
   end
 
   #def serarch //metodo per a ricerca
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def event_spettacolo
     @title = 'Categoria spettacolo'
     @user = User.find(params[:id])
-    @events = Event.search(params["Spettacolo"]).paginate(page: params[:page])
+    @events = Event.search("Spettacolo").paginate(page: params[:page])
     render 'events/index'
   end
 
