@@ -4,6 +4,6 @@
     Postato <%= time_ago_in_words(photo.created_at) %> ago
   </span>
   <% if current_user?(photo.user) %>
-       <%= link_to 'delete', photo, method: :delete, data: { confirm: 'Sei sicuro di voler eliminare la foto?' }%>
+       <%= link_to 'elimina', photo, method: :delete, data: { confirm: 'Sei sicuro di voler eliminare la foto?' }%>
   <% end %>
 </li>

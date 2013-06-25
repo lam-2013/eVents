@@ -1,6 +1,6 @@
 <li class="previous">
   <%= image_tag("locale.jpg")%>
-  <span class="content"><%= local.name %></span>
+  <span class="content"><%= link_to local.name %></span>
   <span>
     <% unless current_user?(@user) %>
     <div id="follow_local_form">

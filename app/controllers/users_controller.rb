@@ -11,8 +11,7 @@ class UsersController < ApplicationController
 
   #def hints// metodo per i suggerimenti
   def hints
-    @user = User.find(params[:id])
-    @users = User.category_condition(@user)
+    @users = User.hints
   end
 
   #def serarch //metodo per a ricerca
@@ -178,5 +177,7 @@ class UsersController < ApplicationController
   def admin_user
     redirect_to root_path unless current_user.admin?
   end
+
+
 
 end

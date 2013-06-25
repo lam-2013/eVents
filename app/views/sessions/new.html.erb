@@ -1,23 +1,20 @@
 <% #Provide the page title in a symbol to application.html.erb to avoid duplication %>
 <% provide :title, 'Log In' %>
 <div id="contenuto">
-<h1>Accedi</h1>
-<% #USER MESSAGE FOR ENTER THEIR NAME AND THEIR PASSWORD %>
-      <div class="row">
-        <div class="span6 offset3">
-          <%= form_for(:session, url: sessions_path) do |f| %>
+  <h1>Accedi</h1>
+  <% #USER MESSAGE FOR ENTER THEIR NAME AND THEIR PASSWORD %>
+  <div id="formcentrato">
+    <%= form_for(:session, url: sessions_path) do |f| %>
 
-              <%= f.label :name %>
-              <%= f.text_field :name %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
 
-              <%= f.label :password %>
-              <%= f.password_field :password %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
 
-              <%= f.submit 'Entra', class: 'pulsante' %>
-          <% end %>
+        <%= f.submit 'Entra', class: 'pulsante' %>
+    <% end %>
 
-          <p>Non hai ancora un account eVents? <%= link_to 'Iscriviti ora!', sign_up_path %></p>
-        </div>
-      </div>
- </div>
-
+    <p>Non hai ancora un account eVents? <%= link_to 'Iscriviti ora!', sign_up_path %></p>
+  </div>
+</div>

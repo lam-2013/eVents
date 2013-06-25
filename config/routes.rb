@@ -51,7 +51,7 @@ SWorD::Application.routes.draw do
   resource :users_follow_locals, only: [:create, :destroy]
 
   # default routes for the Relatioship controller
-  resources :relationship, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
  # default routes for Partecipa_evento controller
   resource :partecipa_events, only: [:create, :destroy]

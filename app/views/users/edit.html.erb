@@ -4,56 +4,55 @@
 <div id="contenuto">
   <h1>Aggiorna il tuo profilo!</h1>
 
-  <div class="row">
-    <div class="span6 offset3">
-      <%= form_for(@user) do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
 
-          <% #fare partial che qui e log in è uguale (un pezzo) %>
+  <div id="formcentrato">
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
 
-          <p>Nome </p>
-          <%= f.text_field :name %>
+        <% #fare partial che qui e log in è uguale (un pezzo) %>
 
-          <p>Cognome </p>
-          <%= f.text_field :email %>
+        <p>Nome </p>
+        <%= f.text_field :name %>
 
-          <p>Data di nascita (gg/mm/aaaa) </p>
-          <p><label><input type="text" name="datanascita" /></label></p>
+        <p>Cognome </p>
+        <%= f.text_field :email %>
 
-          <p>Città </p>
-          <p><label><input type="text" name="citta" /></label></p>
+        <p>Data di nascita (gg/mm/aaaa) </p>
+        <p><label><input type="text" name="datanascita" /></label></p>
 
-          <p>Sesso <label><input type="radio" name="sesso" value="M"/> M</label>
-            <label><input type="radio" name="sesso" value="F"/> F</label></p>
+        <p>Città </p>
+        <p><label><input type="text" name="citta" /></label></p>
 
-          <p>E-Mail </p>
-          <p><label><input type="text" name="mail" /></label></p>
+        <p>Sesso <label><input type="radio" name="sesso" value="M"/> M</label>
+          <label><input type="radio" name="sesso" value="F"/> F</label></p>
 
-          <p>Nickname </p>
-          <p><label><input type="text" name="nickname" /></label></p>
+        <p>E-Mail </p>
+        <p><label><input type="text" name="mail" /></label></p>
 
-          <p>Password </p>
-          <%= f.password_field :password %>
+        <p>Nickname </p>
+        <p><label><input type="text" name="nickname" /></label></p>
 
-          <p>Conferma password </p>
-          <%= f.password_field :password_confirmation %>
+        <p>Password </p>
+        <%= f.password_field :password %>
 
-          <p>Sei un Festaiolo, un Placer o un Promoter? </p>
-          <p><select name="categoria">
-            <option value="FES">Festaiolo</option>
-            <option value="PLA">Placer</option>
-            <option value="PRO">Promoter</option>
-          </select></p>
+        <p>Conferma password </p>
+        <%= f.password_field :password_confirmation %>
 
-          <p>A che tipo di eventi sei interessato?</p>
-          <p><label><input type="checkbox" name="spettacolo"/> Spettacolo</label></p>
-          <p><label><input type="checkbox" name="food"/> Food&Restaurant</label></p>
-          <p><label><input type="checkbox" name="night"/> Nightclubbing</label></p>
+        <p>Sei un Festaiolo, un Placer o un Promoter? </p>
+        <p><select name="categoria">
+          <option value="FES">Festaiolo</option>
+          <option value="PLA">Placer</option>
+          <option value="PRO">Promoter</option>
+        </select></p>
 
-      <% end %>
+        <p>A che tipo di eventi sei interessato?</p>
+        <p><label><input type="checkbox" name="spettacolo"/> Spettacolo</label></p>
+        <p><label><input type="checkbox" name="food"/> Food&Restaurant</label></p>
+        <p><label><input type="checkbox" name="night"/> Nightclubbing</label></p>
 
-      <%= gravatar_for @user %>
-      <a href="http://gravatar.com/emails">Cambia la tua immagine</a>
-    </div>
+    <% end %>
+
+    <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails">Cambia la tua immagine</a>
   </div>
 </div>

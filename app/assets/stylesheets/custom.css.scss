@@ -24,9 +24,6 @@ body {
 
 section {
   overflow: auto;
-  .btn.btn-info {
-background-color: red;
-  }
 }
 
 textarea {
@@ -100,7 +97,6 @@ p {
   min-width:105px;
   padding:6px 11px;
   color:#ffffff;
-
 }
 .pulsante:hover {
   background-color:black;
@@ -110,6 +106,20 @@ p {
   padding:6px 11px;
   text-decoration:none;
   color:white;
+}
+
+a.btn.btn-info{
+  background-color:dodgerblue;
+  border-radius:5px;
+  font-family:Trebuchet MS;
+  font-size:17px;
+  width:128px;
+  margin-left:350px;
+  margin-bottom:10px;
+  padding:6px 11px;
+  color:#ffffff;
+  &:hover {
+  }
 }
 
 .container {
@@ -124,6 +134,11 @@ p {
     width:400px;
 
   }
+  .alert.alert{
+    margin-top:50px;
+    margin-left:450px;
+    width:400px;
+  }
 }
 
 #contenuto{
@@ -134,6 +149,10 @@ p {
   background-color:black;
   width:100%;
   min-width:900px;
+}
+
+strong{
+  color:white;
 }
 
 /* header */
@@ -229,11 +248,12 @@ footer {
 
 
 aside {
-  position: relative;
+  position: absolute;
   min-width:300px;
   section {
     padding: 10px 0;
     border-top: 1px solid $grayLighter;
+
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -450,9 +470,32 @@ navbar-inner {
   position:relative;
   min-width:600px;
   margin-left:350px;
+  margin-bottom:60px;
 }
 
 #new_post{
   height:100px;
   min-width:900px;
+}
+
+#formcentrato{
+  width:500px;
+  margin-left:35%;
+}
+
+#campopost{
+  width:700px;
+  height:100px;
+}
+
+label{
+  color:white;
+}
+
+.container-canvas {
+  /* This could be done in one single declaration. See the extended sample. */
+  margin-right: auto;
+  margin-left: auto;
+  width: 300px;
+  height: 50px;
 }

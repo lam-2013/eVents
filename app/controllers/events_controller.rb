@@ -5,6 +5,10 @@ class EventsController < ApplicationController
   # check if the user is allowed to delete a post
   before_filter :correct_user
 
+  def show
+   @event = Event.find(params[:id])
+  end
+
   private
 
   def correct_user

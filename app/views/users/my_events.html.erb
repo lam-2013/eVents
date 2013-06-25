@@ -1,11 +1,13 @@
 <% provide :title, 'I miei eVenti' %>
 
-<h1>I miei eVenti</h1>
+<div id="contenuto">
+  <h1>I miei eVenti</h1>
 
-<%= will_paginate @events %>
+  <%= will_paginate @events %>
 
-<ul class="events">
-  <%= render @events %>
-</ul>
+  <ul class="center">
+    <%= render @events %>
+  </ul>
 
-<%= will_paginate @events %>
+  <%= will_paginate @events %>
+</div>

@@ -68,12 +68,8 @@ class User < ActiveRecord::Base
   # password_confirmation sempre presente
   validates :password_confirmation, presence: true
 
-  #hints
-  def self.category_condition(user)
-   followed_user_ids = 'SELECT followed_id FROM relationships WHERE follower_id = :user_id'
-   where("name <>  (#{user.name}
-           AND category LIKE ? (#{user.category})
-             AND (#{user.id}) NOT IN (#{followed_user_ids})" ,user_id: user.id)
+  def self.hints
+    @users ||= trova_users
   end
 
   #search
@@ -136,9 +132,38 @@ class User < ActiveRecord::Base
     Post.from_users_followed_by(self)
   end
 
-
   # private methods
   private
+
+  def self.trova_users
+    User.find(:all, :conditions => conditions)
+  end
+  #followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = #{user.id}"
+  def id_conditions
+    ['users.id <> ?', "%#{current_user.category}%"]
+    # where ('category  LIKE ?', "%#{current_user.category}%");
+  end
+
+  def category_conditions()
+    ['users.category  LIKE ?',"%#{current_user.category}%"]
+  end
+
+  def following_conditions()
+    #followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = user.id"
+    ["users  NOT IN  (#{current_user.followed_users})" ]
+  end
+
+  def self.conditions
+    [conditions_clauses.join(' AND ')]
+  end
+
+  def self.conditions_clauses
+    conditions_parts.map { |condition| condition.first }
+  end
+
+  def self.conditions_parts
+    private_methods(false).grep(/_conditions$/).map { |m| send(m) }.compact
+  end
 
   def create_remember_token
     # create a random string, save for use in URIs and cookies, for the user remember token
