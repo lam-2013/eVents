@@ -1,7 +1,7 @@
 <li>
   <span class="content"><%= image_tag photo.content %></span>
   <span class="timestamp">
-    Postato <%= time_ago_in_words(photo.created_at) %> ago
+    Postato <%= time_ago_in_words(photo.created_at) %> fa
   </span>
   <% if current_user?(photo.user) %>
        <%= link_to 'elimina', photo, method: :delete, data: { confirm: 'Sei sicuro di voler eliminare la foto?' }%>

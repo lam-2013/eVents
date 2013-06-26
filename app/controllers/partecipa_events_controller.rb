@@ -1,8 +1,8 @@
 class PartecipaEventsController < ApplicationController
-  # user must be signed in to follow/unfollow someone
+  # user must be signed in
+  # per partecipare o meno ad un evento
   before_filter :signed_in_user
 
-  # respond to the actions with html or javascript (see respond_with method)
   respond_to :html, :js
 
   def create

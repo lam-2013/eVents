@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_filter :correct_user, only: :destroy
 
   def create
-    # build a new post from the information contained in the "new post" form
+    # build a new post from the information contained in the "shared/post_form"
     @post = current_user.posts.build(params[:post])
     if @post.save
       flash[:success] = 'Post created!'

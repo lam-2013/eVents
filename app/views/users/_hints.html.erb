@@ -1,7 +1,7 @@
 <% provide :title, 'Potresti conoscere:' %>
 <span>
   <ul class="pager">
-    <%= @users.each do |user| %>
+    <% @hints.each do |user| %>
         <li>
           <%= link_to user.name, user %>
         </li>

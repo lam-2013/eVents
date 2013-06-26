@@ -1,2 +1,2 @@
 $("#follow_event_form").html("<%= escape_javascript(render('users/unfollow_event')) %>")
-$("#followers").html('<%= @event.partecipante.count %>')
+$("#followed_events").html('<%= @user.followed_events.count %>')

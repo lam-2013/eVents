@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
-
+#  tipo       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
   # name sempre presente lunghezza max 50 caratteri
   validates :name, presence: true, length: {maximum: 50}
 
+  #cerca per tipo di evento
   def self.search(type)
    where( "tipo LIKE ?","%#{type}%")
   end

@@ -2,7 +2,6 @@ class UsersFollowLocalsController < ApplicationController
   # user must be signed in to follow/unfollow someone
   before_filter :signed_in_user
 
-  # respond to the actions with html or javascript (see respond_with method)
   respond_to :html, :js
 
   def create

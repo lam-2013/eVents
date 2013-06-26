@@ -2,11 +2,11 @@
 #
 # Table name: partecipa_events
 #
-#  id          :integer          not null, primary key
+#  id              :integer          not null, primary key
 #  partecipante_id :integer
-#  evento_id :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  evento_id       :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 class PartecipaEvent < ActiveRecord::Base

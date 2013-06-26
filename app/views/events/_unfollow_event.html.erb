@@ -1,4 +1,4 @@
-<% # linked to the destroy action in the User_follow_locals controller %>
+<% # linked to the destroy action in the Partecipa_events controller %>
 <%= form_for(current_user.partecipa_events.find_by_evento_id(@event), html: { method: :delete }, remote: true ) do |f| %>
     <%= f.submit 'chiudi evento', class: 'pulsante' %>
 <% end %>

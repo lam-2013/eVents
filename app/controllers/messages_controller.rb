@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
 
   def create
     # build a new message from the information contained in the "new message" form
-    # we cannot use create, in this case, due to some choices in the simple-private-messages gem
+    # support on simple-private-messages gem
     @message = Message.new
     @message.subject = params[:message][:subject]
     @message.body = params[:message][:body]

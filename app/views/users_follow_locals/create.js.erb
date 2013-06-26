@@ -1,2 +1,2 @@
 $("#follow_local_form").html("<%= escape_javascript(render('users/unfollow_local')) %>")
-$("#followers").html('<%= @local.followers.count %>')
+$("#followed_locals").html('<%= @user.followed_locals.count %>')

@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :name, :password, :password_confirmation, :category
 
-  #metodo autenticazione del sistema
   has_secure_password
 
   # each user can send/receive some private messages (thanks to the simple-private-messages gem)
@@ -25,12 +24,12 @@ class User < ActiveRecord::Base
   # each user can have some photos associated and they must be destroyed together with the user
   has_many :photos, dependent: :destroy
 
-  #user partecipa ad un evento
+  #user partecipe di più eventi
   has_many :partecipa_events, foreign_key:'partecipante_id', dependent: :destroy
-  #user ha partecipato a molti eventi tramite questa relazione
+
+  #user è  partecipante a molti eventi tramite questa relazione
   has_many :followed_events, through: :partecipa_events, source: :evento
 
-  #USER FOLLOW LOCALS
   #utente segue più locali
   has_many :users_follow_locals, foreign_key: 'follower_id', dependent: :destroy
 
@@ -59,8 +58,6 @@ class User < ActiveRecord::Base
 
   # email must be always present, unique and with a specific format
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false,}
-  #validates :email, presence: true,:uniqueness => true,
-  #:format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/, :on => :create }
 
   # password sempre presente lunghezza min 6 caratteri
   validates :password, presence: true, length: { minimum: 6 }
@@ -68,8 +65,9 @@ class User < ActiveRecord::Base
   # password_confirmation sempre presente
   validates :password_confirmation, presence: true
 
-  def self.hints
-    @users ||= trova_users
+  #suggerimenti
+  def self.hints(user)
+    @hints = trova_users(user)
   end
 
   #search
@@ -95,7 +93,6 @@ class User < ActiveRecord::Base
   def unfollow_event!(event)
     partecipa_events.find_by_evento_id(event.id).destroy
   end
-
 
   #utente segue un locale?
   def following_local?(local)
@@ -135,34 +132,9 @@ class User < ActiveRecord::Base
   # private methods
   private
 
-  def self.trova_users
-    User.find(:all, :conditions => conditions)
-  end
-  #followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = #{user.id}"
-  def id_conditions
-    ['users.id <> ?', "%#{current_user.category}%"]
-    # where ('category  LIKE ?', "%#{current_user.category}%");
-  end
-
-  def category_conditions()
-    ['users.category  LIKE ?',"%#{current_user.category}%"]
-  end
-
-  def following_conditions()
-    #followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = user.id"
-    ["users  NOT IN  (#{current_user.followed_users})" ]
-  end
-
-  def self.conditions
-    [conditions_clauses.join(' AND ')]
-  end
-
-  def self.conditions_clauses
-    conditions_parts.map { |condition| condition.first }
-  end
-
-  def self.conditions_parts
-    private_methods(false).grep(/_conditions$/).map { |m| send(m) }.compact
+  #condizioni per ricercare gli utenti che "potresti conoscere"
+  def self.trova_users(user)
+    User.where("id <> ? AND category = ?", user.id, user.category)
   end
 
   def create_remember_token

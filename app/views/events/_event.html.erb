@@ -1,15 +1,7 @@
-<li class="previous">
+<li>
   <%= image_tag("evento.jpg")%>
   <span class="content"><%= link_to event.name %></span>
-  <span>
-    <% unless current_user?(@user) %>
-    <div id="follow_event_form">
-      <% if current_user.following_event?(@event) %>
-          <%= render 'locals/unfollow_event' %>
-      <% else %>
-          <%= render 'locals/follow_event' %>
-      <% end %>
-    </div>
-    <% end %>
-  </span>
+  <span class="timestamp">
+    Creato <%= time_ago_in_words(event.created_at) %> fa
+   </span>
 </li>

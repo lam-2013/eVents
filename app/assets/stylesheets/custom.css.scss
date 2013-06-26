@@ -4,7 +4,6 @@
 
 /* mixins, variables, etc. */
 
-
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -87,7 +86,6 @@ p {
 
 /* pagine */
 
-
 .pulsante {
   background-color:green;
   border-radius:5px;
@@ -156,7 +154,6 @@ strong{
 }
 
 /* header */
-
 
 header {
   position: relative;
@@ -244,8 +241,6 @@ footer {
 }
 
 /* sidebar */
-
-
 
 aside {
   position: absolute;
@@ -492,8 +487,9 @@ label{
   color:white;
 }
 
+/*for canvas*/
+
 .container-canvas {
-  /* This could be done in one single declaration. See the extended sample. */
   margin-right: auto;
   margin-left: auto;
   width: 300px;

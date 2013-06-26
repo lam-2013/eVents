@@ -47,14 +47,14 @@ end
 def make_photos
   # generate fake photos
   users = User.all
-  5.times do
+  9.times do
     users.each{ |user| user.photos.create!( content: (Dir.glob(File.join(Rails.root,
                                           'app/assets/foto_eVents', '*')).sample)); }
   end
 end
 
 def make_locals
-  5.times do |n|
+  4.times do |n|
     name  = Faker::Name.name
     Local.create!(name: name,
                   tipo: 'Nightclubbing')
@@ -63,10 +63,22 @@ def make_locals
 end
 
 def make_events
-  3.times do |n|
+  5.times do |n|
     name  = Faker::Name.name
     Event.create!(name: name,
                   tipo: 'Nightclubbing' )
+  end
+
+  2.times do |n|
+    name  = Faker::Name.name
+    Event.create!(name: name,
+                  tipo: 'Spettacolo' )
+  end
+
+  3.times do |n|
+    name  = Faker::Name.name
+    Event.create!(name: name,
+                  tipo: 'Food&restaurant' )
   end
 end
 
@@ -82,7 +94,9 @@ def make_users_follow_locals
   locals = Local.all
   local = locals.first
   users = User.all
-  users_fol_local = users[0..10]
+  user = User.first
+  locals.each {|local| user.follow_local!(local)}
+  users_fol_local = users[1..10]
   users_fol_local.each { |follower| follower.follow_local!(local) }
 end
 
@@ -91,14 +105,11 @@ def make_relationships
   user = users.first
   followed_users = users[2..10]
   followers = users[3..19]
-  # first user follows user 3 up to 51
   followed_users.each { |followed| user.follow!(followed) }
-  # users 4 up to 41 follow back the first user
   followers.each { |follower| follower.follow!(user) }
 end
 
 def make_private_messages
-  # generate 10 fake messages for the first user
   first_user = User.first
   users = User.all
   message_from_users = users[3..7]

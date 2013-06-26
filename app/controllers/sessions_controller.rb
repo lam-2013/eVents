@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # get the user name from the sign in form
     user = User.find_by_name(params[:session][:name])
     # check if the retrieved user is valid
     if user && user.authenticate(params[:session][:password])
@@ -15,10 +14,10 @@ class SessionsController < ApplicationController
     else
       # errore nel log_in
       flash.now[:error] = 'Invalid name/password combination'
-      # go back to the sign in page
+      # go back
       render 'new'
     end
- end
+  end
 
   def destroy
     # sign out the current user
@@ -26,5 +25,4 @@ class SessionsController < ApplicationController
     # go to the home_page
     redirect_to root_path
   end
-
 end

@@ -3,7 +3,6 @@
   <%= gravatar_for current_user, size: 100 %>
 </a>
 
-<% # current user name, link to her profile and her posts number %>
 <h1><%= current_user.name %></h1>
 <span><%= link_to 'Visualizza profilo', current_user %></span>
 <span><%= pluralize(current_user.posts.count, 'post') %></span>

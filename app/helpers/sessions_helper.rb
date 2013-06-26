@@ -1,6 +1,6 @@
 module SessionsHelper
 
-  # Sign in method: store the remember token in a permanent cookie (it lasts for 20 years...)
+  # Sign in method: store the remember token in a permanent cookie
   # and set the user performing the sign in as the current user
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
@@ -18,26 +18,22 @@ module SessionsHelper
     @current_user ||= User.find_by_remember_token(cookies[:remember_token])
   end
 
-  # Is the current user signed in?
   def signed_in?
     !current_user.nil?
   end
 
-  # Sign out method: clear the current user instance variable and delete the corresponding cookie
   def sign_out
     self.current_user = nil
     cookies.delete(:remember_token)
   end
 
   # Check if the given user is also the current user
-  # user - The User to check the authorization for
   def current_user?(user)
     user == current_user
   end
 
   def signed_in_user
     redirect_to signin_url, notice: 'please sign in' unless signed_in?
-    # notice: the same of flash[:notice] = 'Please sign in'
   end
 
 end

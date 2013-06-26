@@ -3,7 +3,7 @@ SWorD::Application.routes.draw do
  root :to => 'pages#home'
 
  #named routs for static page and signIn signUp
-  match '/about', to: 'pages#about'
+  match '/about',   to: 'pages#about'
   match '/contact', to: 'pages#contact'
   match '/sign_in', to: 'sessions#new'
   match '/sign_up', to: 'users#new'
@@ -16,7 +16,7 @@ SWorD::Application.routes.draw do
     member do
       get :following,:followers,:messages,:photos,
           :my_events,:my_locals,:events, :event_nightclubbing, :event_f_r,
-          :event_spettacolo, :hints # ex.: get /users/1/followers
+          :event_spettacolo, :hints
     end
 
     collection do

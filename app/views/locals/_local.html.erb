@@ -1,6 +1,13 @@
-<li class="previous">
+<li>
+
   <%= image_tag("locale.jpg")%>
+  <div>
   <span class="content"><%= link_to local.name %></span>
+  <span class="timestamp">
+    Attivo da <%= time_ago_in_words(local.created_at) %>
+  </span>
+  </div>
+
   <span>
     <% unless current_user?(@user) %>
     <div id="follow_local_form">
