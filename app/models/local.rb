@@ -18,6 +18,7 @@ class Local < ActiveRecord::Base
    # name sempre presente lunghezza max 50 caratteri
    validates :name, presence: true, length: {maximum: 50}
 
+
    #ricerca locali
    def self.search(name)
      where( "name LIKE ?","%#{name}%")

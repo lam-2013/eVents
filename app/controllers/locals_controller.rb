@@ -4,6 +4,7 @@ class LocalsController < ApplicationController
   before_filter :signed_in_user
 
   respond_to :html ,:js
+
   private
 
   def correct_user

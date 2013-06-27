@@ -3,7 +3,7 @@
 <div id="contenuto">
   <h1>Aggiorna il tuo profilo!</h1>
 
-<div id="formcentrato">
+  <div id="formcentrato">
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 
@@ -45,7 +45,7 @@
         <p><label><input type="checkbox" name="spettacolo"/> Spettacolo</label></p>
         <p><label><input type="checkbox" name="food"/> Food&Restaurant</label></p>
         <p><label><input type="checkbox" name="night"/> Nightclubbing</label></p>
-    <%end%>
+        <%end%>
 
        <%= gravatar_for @user %>
            <a href="http://gravatar.com/emails">Cambia la tua immagine</a>

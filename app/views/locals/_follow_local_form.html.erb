@@ -1,10 +1,8 @@
-<% unless current_user?(@user) %>
-    <div id="follow_local_form">
+ <div id="follow_local_form">
       <% if current_user.following_local?(@local) %>
           <%= render 'locals/unfollow_local' %>
       <% else %>
           <%= render 'locals/follow_local' %>
       <% end %>
 
-    </div>
-<% end %>
+ </div>

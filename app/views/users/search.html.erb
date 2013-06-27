@@ -1,5 +1,5 @@
 <% provide :title, 'Search results' %>
-
+<div id="contenuto" >
 <h1><%= page_entries_info @users %></h1>
 
 <%= will_paginate %>
@@ -7,5 +7,6 @@
 <ul class="users">
   <%= render @users %>
 </ul>
+</div>
 
 <%= will_paginate %>
